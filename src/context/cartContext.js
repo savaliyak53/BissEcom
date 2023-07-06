@@ -5,7 +5,7 @@ const cartContext = createContext();
 
 function getLocalCartData() {
   let newCartData = localStorage.getItem("bissCart");
-  if (newCartData === []) {
+  if (newCartData === [] || newCartData === undefined || newCartData === null) {
     return [];
   } else {
     return JSON.parse(newCartData);
@@ -14,16 +14,17 @@ function getLocalCartData() {
 
 const initialState = {
   cart: getLocalCartData(),
-  totalItem: "",
-  totalAmount: "",
+  total_Item: "",
+  total_price: "",
   shipping_fee: 50000,
+  maxItem: "",
 };
 
 const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  console.log("add to cart");
   const addToCart = (id, colorTik, amount, product) => {
     return dispatch({
-      type: "ADD_TO_CART",
       payload: { id, colorTik, amount, product },
     });
   };

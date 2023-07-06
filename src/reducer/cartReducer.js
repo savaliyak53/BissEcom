@@ -1,5 +1,3 @@
-import React from "react";
-
 const CartReducer = (state, action) => {
   if (action.type === "ADD_TO_CART") {
     const { id, colorTik, amount, product } = action.payload;
@@ -87,8 +85,12 @@ const CartReducer = (state, action) => {
     let updatedProduct = state.cart.map((currItem) => {
       if (currItem.id === action.payload) {
         let incAmount = currItem.amount + 1;
-        if (incAmount === currItem.max) {
-          incAmount = currItem.max;
+
+        if (currItem.max !== undefined) {
+          state.maxItem = currItem.max;
+        }
+        if (incAmount >= state.maxItem) {
+          incAmount = state.maxItem;
         }
         return {
           ...state,
@@ -110,7 +112,7 @@ const CartReducer = (state, action) => {
         initalValue = initalValue + amount;
         return initalValue;
       },
-      [0]
+      0
     );
     return {
       ...state,

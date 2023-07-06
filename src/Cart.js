@@ -6,6 +6,8 @@ import PriceFormat from "./helpers/priceFormat";
 const Cart = () => {
   const { cart, clearCart, total_price, shipping_fee } = useCartContext();
 
+  const price = parseFloat(total_price)
+
   if (cart.length === 0) {
     return (
       <div className="w-full h-[47.4vh] flex justify-center items-center">
@@ -15,6 +17,7 @@ const Cart = () => {
       </div>
     );
   }
+  localStorage.clear()
 
   return (
     <div className="w-full flex flex-col justify-center items-center text-primary-500 text-xl font-medium">
@@ -25,7 +28,7 @@ const Cart = () => {
         <div>
           Subtotal:
           <span className="ml-1">
-            <PriceFormat price={total_price} />
+            <PriceFormat price={price} />
           </span>
         </div>
         <div>
@@ -36,7 +39,7 @@ const Cart = () => {
         </div>
         <div>
           <span className="ml-1">
-            Total Price: <PriceFormat price={total_price + shipping_fee} />
+            Total Price: <PriceFormat price={price + shipping_fee} />
           </span>
         </div>
       </div>

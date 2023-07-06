@@ -13,7 +13,7 @@ const Product = ({ items }) => {
             <h4>Category: {items?.category}</h4>
             <h4>Company: {items?.company}</h4>
             <h4>
-              Price: <PriceFormat price={items?.price} />
+              Price: <PriceFormat price={parseFloat(items?.price)} />
             </h4>
           </div>
         </div>

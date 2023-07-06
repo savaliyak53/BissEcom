@@ -37,7 +37,9 @@ function SingleProduct() {
               <PriceFormat price={price + 25000} />
             </span>
           </h2>
-          <h2 className="text-3xl ">Offer Price: {price}</h2>
+          <h2 className="text-3xl ">
+            Offer Price: <PriceFormat price={price} />{" "}
+          </h2>
           <div className="flex">
             <StarReview stars={stars} reviews={reviews} />
             <div></div>
